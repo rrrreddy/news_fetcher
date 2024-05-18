@@ -4,6 +4,7 @@
 News Fetcher is a Python package that fetches news articles from various sources using the NewsAPI. The package can be used to fetch news based on keywords, sources, domains, and other parameters. It also includes a Flask-based web interface to display the fetched news articles.
 
 ## Project Structure
+```plaintext
 news_fetcher/
 │
 ├── src/
@@ -41,7 +42,7 @@ news_fetcher/
 └── setup.py
 └── template.py
 
-
+```
 
 ## Installation
 
@@ -88,20 +89,26 @@ python app.py
 
 2. Open your browser and navigate to http://127.0.0.1:5000/ to see the web interface.
 
+
+![alt text](image.png)
+
+
+
 ### Fetching News Programmatically
 
 You can also use the package programmatically:
 
 ```
-from src.news_fetcher.facade.news_facade import get_news
+from news_fetcher.facade.google_news_facade import get_news
 
 # Fetch news articles
 news_data = get_news(keywords='bitcoin', language='en', sort_by='publishedAt')
 
 for article in news_data:
     print(article.title)
-```
 
+```
+![alt text](image-1.png)
 
 ## Project Components
 
@@ -123,3 +130,4 @@ This project is licensed under the MIT License - see the `LICENSE` file for deta
 
 This `README.md` file provides an overview of your project, including the structure, installation instructions, usage examples, and a brief description of each component. Feel free to customize it further based on your specific requirements and project details.
 ```
+

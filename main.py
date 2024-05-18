@@ -2,11 +2,9 @@ from news_fetcher import logger
 
 from news_fetcher.facade.google_news_facade import get_news
 
+# Fetch news articles
+news_data = get_news(keywords='bitcoin', language='en', sort_by='publishedAt')
 
-logger.info(f"Fetching news")
-news = get_news()
-logger.info(f"Fetched news")
-logger.info(f"News: {news}")
-
-logger.info(f"Done")
+for article in news_data:
+    print(article.title)
 
