@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+	<testsuite name="test_configuration.TestConfiguration-20240517223520" tests="2" file="test_configuration.py" time="0.002" timestamp="2024-05-17T22:35:20" failures="0" errors="0" skipped="0">
+		<testcase classname="test_configuration.TestConfiguration" name="test_get_api_key" time="0.002" timestamp="2024-05-17T22:35:20" file="src/tests/test_configuration.py" line="10"/>
+		<testcase classname="test_configuration.TestConfiguration" name="test_get_news_api_client" time="0.000" timestamp="2024-05-17T22:35:20" file="src/tests/test_configuration.py" line="14"/>
+	</testsuite>
+	<testsuite name="test_google_news.TestGoogleNews-20240517223520" tests="2" file="test_google_news.py" time="0.003" timestamp="2024-05-17T22:35:20" failures="0" errors="0" skipped="0">
+		<testcase classname="test_google_news.TestGoogleNews" name="test_fetch_google_news" time="0.001" timestamp="2024-05-17T22:35:20" file="src/tests/test_google_news.py" line="7"/>
+		<testcase classname="test_google_news.TestGoogleNews" name="test_fetch_google_news_with_invalid_api_key" time="0.002" timestamp="2024-05-17T22:35:20" file="src/tests/test_google_news.py" line="29"/>
+	</testsuite>
+	<testsuite name="test_news_facade.TestNewsFacade-20240517223520" tests="2" file="test_news_facade.py" time="0.001" timestamp="2024-05-17T22:35:20" failures="0" errors="0" skipped="0">
+		<testcase classname="test_news_facade.TestNewsFacade" name="test_get_news" time="0.000" timestamp="2024-05-17T22:35:20" file="src/tests/test_news_facade.py" line="8"/>
+		<testcase classname="test_news_facade.TestNewsFacade" name="test_get_news_with_error" time="0.001" timestamp="2024-05-17T22:35:20" file="src/tests/test_news_facade.py" line="30"/>
+	</testsuite>
+</testsuites>

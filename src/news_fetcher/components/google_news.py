@@ -57,6 +57,8 @@ def fetch_google_news(keywords=None, search_in=None, sources=None, domains=None,
             page_size=page_size
         )
         logger.info("API request successful")
+        if response.get('status') == 'error':
+            raise ValueError(response.get('message'))
     except Exception as e:
         logger.error(f"Error in API response: {e}")
         response = {"error": str(e)}

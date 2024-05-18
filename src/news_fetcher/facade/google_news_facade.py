@@ -13,22 +13,23 @@ def get_news(keywords=None, search_in=None, sources=None, domains=None, exclude_
     """
     news_data = fetch_google_news(keywords, search_in, sources, domains, exclude_domains, from_date, to_date, language, sort_by, page_size, page)
     logger.info(f"Received news data")
-
-    if 'articles' in news_data:
-        news_items = [
-            GoogleNewsConfig(
-                source=article['source']['name'],
-                author=article.get('author'),
-                title=article['title'],
-                description=article['description'],
-                url=article['url'],
-                urlToImage=article.get('urlToImage'),
-                publishedAt=article['publishedAt'],
-                content=article.get('content')
-            ) for article in news_data['articles']
-        ]
-        return news_items
-    else:
+    
+    if 'error' in news_data:
         logger.info("No articles found")
-        return {"error": "No articles found"}
-
+        return {'error': news_data['error']}
+    
+    articles = news_data.get('articles', [])
+    news_items = [
+        GoogleNewsConfig(
+            source=article['source']['name'],
+            author=article.get('author'),
+            title=article['title'],
+            description=article['description'],
+            url=article['url'],
+            urlToImage=article.get('urlToImage'),
+            publishedAt=article['publishedAt'],
+            content=article.get('content')
+        ) for article in news_data['articles']
+        ]
+    logger.info(f"Received {len(news_items)} news articles")
+    return news_items
