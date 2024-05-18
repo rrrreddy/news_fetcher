@@ -1,37 +1,39 @@
 from dotenv import load_dotenv
 import os
+from newsapi import NewsApiClient
 from news_fetcher import logger
+
 
 # Load environment variables from .env file
 load_dotenv()
 
-class Google_News_Config:
-    def __init__(self):
-        pass
-    
-    
-    # apply exception handling for the below functions
+logger.info(f"Successfully loaded environment variables")
 
+# Get API key from environment variables
+
+class Config:
     @staticmethod
     def get_api_key():
+        logger.info(f"Fetching API key from environment variables")
+        
         try:
-            api_key = os.getenv('Google_News_API_Key')
-            if api_key is None:
-                logger.error("API Key is not set. Please set the NEWS_API_KEY environment variable.")
-                raise ValueError("API Key is not set. Please set the NEWS_API_KEY environment variable.")
-            logger.info("API Key successfully retrieved")
+            api_key = os.getenv('NEWS_API_KEY')
+            if not api_key:
+                logger.error(f"API key not found in environment variables")
+                return {"error": "API key not found in environment variables"}
             return api_key
         except Exception as e:
-            logger.error(f"An error occurred while retrieving the API key: {str(e)}")
-            raise
-    
-    
+            logger.error(f"Error occurred while fetching API key: {str(e)}")
+            return {"error": "Error occurred while fetching API key"}
+
     @staticmethod
-    def get_google_news_url():
+    def get_news_api_client():
+        logger.info(f"Fetching News API client")
         try:
-            news_url = os.getenv('Google_News_Url')
-            return news_url
+            api_key = Config.get_api_key()
+            logger.info(f"Successfully fetched News API client")
+            return NewsApiClient(api_key=api_key)
         except Exception as e:
-            logger.error(f"An error occurred while retrieving the Google News URL: {str(e)}")
-            raise
-    
+            logger.error(f"Error in fetching News API client: {str(e)}")
+            return {"error": "Error in fetching News API client"}
+            

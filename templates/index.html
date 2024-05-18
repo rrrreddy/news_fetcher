@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Fetcher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        .news-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        .news-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>News Fetcher</h1>
+        <form method="POST">
+            <div>
+                <label for="keywords">Keywords:</label>
+                <input type="text" id="keywords" name="keywords" value="{{ keywords or '' }}">
+            </div>
+            <div>
+                <label for="search_in">Search In:</label>
+                <input type="text" id="search_in" name="search_in" value="{{ search_in or '' }}">
+            </div>
+            <div>
+                <label for="sources">Sources:</label>
+                <input type="text" id="sources" name="sources" value="{{ sources or '' }}">
+            </div>
+            <div>
+                <label for="domains">Domains:</label>
+                <input type="text" id="domains" name="domains" value="{{ domains or '' }}">
+            </div>
+            <div>
+                <label for="exclude_domains">Exclude Domains:</label>
+                <input type="text" id="exclude_domains" name="exclude_domains" value="{{ exclude_domains or '' }}">
+            </div>
+            <div>
+                <label for="from_date">From Date:</label>
+                <input type="date" id="from_date" name="from_date" value="{{ from_date or '' }}">
+            </div>
+            <div>
+                <label for="to_date">To Date:</label>
+                <input type="date" id="to_date" name="to_date" value="{{ to_date or '' }}">
+            </div>
+            <div>
+                <label for="language">Language:</label>
+                <select id="language" name="language">
+                    <option value="en" {% if language == 'en' %}selected{% endif %}>English</option>
+                    <option value="es" {% if language == 'es' %}selected{% endif %}>Spanish</option>
+                    <option value="fr" {% if language == 'fr' %}selected{% endif %}>French</option>
+                    <!-- Add more languages as needed -->
+                </select>
+            </div>
+            <div>
+                <label for="sort_by">Sort By:</label>
+                <select id="sort_by" name="sort_by">
+                    <option value="publishedAt" {% if sort_by == 'publishedAt' %}selected{% endif %}>Published At</option>
+                    <option value="relevancy" {% if sort_by == 'relevancy' %}selected{% endif %}>Relevancy</option>
+                    <option value="popularity" {% if sort_by == 'popularity' %}selected{% endif %}>Popularity</option>
+                </select>
+            </div>
+            <div>
+                <label for="page_size">Page Size:</label>
+                <input type="number" id="page_size" name="page_size" value="{{ page_size or 20 }}">
+            </div>
+            <div>
+                <button type="submit">Fetch News</button>
+            </div>
+        </form>
+        <h2>News Articles</h2>
+        <div>
+            {% for news in news_data %}
+            <div class="news-item">
+                <h3>{{ news.title }}</h3>
+                <p><strong>Source:</strong> {{ news.source }}</p>
+                <p><strong>Author:</strong> {{ news.author }}</p>
+                <p><strong>Description:</strong> {{ news.description }}</p>
+                <p><strong>Published At:</strong> {{ news.publishedAt }}</p>
+                <p><a href="{{ news.url }}">Read more</a></p>
+                <img src="{{ news.urlToImage }}" alt="Image" style="width:100%;">
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
