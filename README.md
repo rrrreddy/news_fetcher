@@ -1,7 +1,7 @@
 # news_fetcher
 # News Fetcher
 
-News Fetcher is a Python package that fetches news articles from various sources using the NewsAPI. The package can be used to fetch news based on keywords, sources, domains, and other parameters. It also includes a Flask-based web interface to display the fetched news articles.
+News Fetcher is a Python package that fetches news articles from various sources using the NewsAPI(https://newsapi.org/). The package can be used to fetch news based on keywords, sources, domains, and other parameters. It also includes a Flask-based web interface to display the fetched news articles.
 
 ## Project Structure
 ```plaintext
